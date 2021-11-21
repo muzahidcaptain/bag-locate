@@ -1,9 +1,8 @@
-
 #include <SoftwareSerial.h>
 #include <AltSoftSerial.h>
 #include <TinyGPS++.h> 
 
-const String PHONE = "+8801793158656";
+const String PHONE = "+8801975021104";
 
 String textMessage;
 
@@ -12,6 +11,7 @@ String textMessage;
 
 #define rxPin 2
 #define txPin 3
+
 const int buttonPin = 10;
 SoftwareSerial sim800(rxPin,txPin);
 
@@ -70,7 +70,6 @@ void sendSmsGPS(String text)
     Serial.println(gps.location.lng(), 6);
     newData = false;
     delay(300);
-    ///*
     sim800.print("AT+CMGF=1\r");
     delay(1000);
     sim800.print("AT+CMGS=\""+PHONE+"\"\r");
@@ -82,7 +81,5 @@ void sendSmsGPS(String text)
     delay(100);
     sim800.write(0x1A); //ascii code for ctrl-26 //sim800.println((char)26); //ascii code for ctrl-26
     delay(1000);
-    //Serial.println("GPS Message Sent Successfully.");
-    //*/
   }
 }
